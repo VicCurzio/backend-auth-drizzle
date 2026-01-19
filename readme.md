@@ -26,6 +26,6 @@ En la carpeta `/postman` encontrarás el archivo `Auth - Drizzle.postman_collect
 4. Usa el token en el `GET /me` (Bearer Token) para validar tu sesión.
 
 ### Variables de Entorno (.env)
-PORT=3001
-DATABASE_URL=postgres://postgres:admin123@localhost:5432/dashboard_finanzas
-JWT_SECRET=secret_key
+- PORT=3001
+- DATABASE_URL=postgres://postgres:admin123@localhost:5432/dashboard_finanzas
+- JWT_SECRET=secret_key
