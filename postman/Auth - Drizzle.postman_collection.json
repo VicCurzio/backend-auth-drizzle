@@ -1,0 +1,63 @@
+{
+  "info": {
+    "name": "Auth - Drizzle ORM",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"usuario@test.com\",\n    \"password\": \"123\",\n    \"nombre\": \"Victor\",\n    \"rol\": \"user\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/auth/register"
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"usuario@test.com\",\n    \"password\": \"123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/auth/login"
+        }
+      }
+    },
+    {
+      "name": "Get Me (Profile)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "PEGAR_TOKEN_AQUI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3001/auth/me"
+        }
+      }
+    }
+  ]
+}
