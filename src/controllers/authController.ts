@@ -10,12 +10,10 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     try {
         const { email, password, nombre } = req.body;
 
-        // Validaciones obligatorias
         if (!email || !password || !nombre) {
             return res.status(400).json({ error: "Todos los campos son obligatorios" });
         }
 
-        // Verificar si el usuario ya existe
         const [existingUser] = await db.select().from(users).where(eq(users.email, email));
         if (existingUser) {
             return res.status(409).json({ error: "Error" });
@@ -32,11 +30,10 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
         res.status(201).json({ message: "Usuario registrado con éxito" });
     } catch (error) {
-        next(error); // Activa tu errorHandler.ts
+        next(error);
     }
 };
 
-// --- LOGIN ---
 export const login = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { email, password } = req.body;
@@ -64,11 +61,10 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             user: { id: user.id, nombre: user.nombre, email: user.email }
         });
     } catch (error) {
-        next(error); // <--- ESTO activa tu errorHandler.ts
+        next(error);
     }
 };
 
-// --- GET ME ---
 export const getMe = async (req: Request, res: Response) => {
     try {
         const authHeader = req.headers.authorization;

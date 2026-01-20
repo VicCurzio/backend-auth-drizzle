@@ -6,14 +6,11 @@ import { errorHandler, notFoundHandler } from './middlewares/errorHandler.js';
 
 const app = express();
 
-// Middlewares obligatorios
 app.use(cors());
 app.use(express.json());
 
-// Rutas de Autenticación
 app.use('/auth', authRoutes);
 
-// Manejo de errores (al final)
 app.use(notFoundHandler);
 app.use(errorHandler);
 
