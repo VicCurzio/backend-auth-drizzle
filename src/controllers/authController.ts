@@ -16,7 +16,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
         const [existingUser] = await db.select().from(users).where(eq(users.email, email));
         if (existingUser) {
-            return res.status(409).json({ error: "Error" });
+            return res.status(409).json({ error: "El email ya está registrado" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);

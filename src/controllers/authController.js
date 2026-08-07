@@ -7,11 +7,9 @@ const JWT_SECRET = process.env.JWT_SECRET || 'clave_secreta';
 export const register = async (req, res, next) => {
     try {
         const { email, password, nombre } = req.body;
-        // Validaciones obligatorias
         if (!email || !password || !nombre) {
             return res.status(400).json({ error: "Todos los campos son obligatorios" });
         }
-        // Verificar si el usuario ya existe
         const [existingUser] = await db.select().from(users).where(eq(users.email, email));
         if (existingUser) {
             return res.status(409).json({ error: "El email ya está registrado" });
@@ -26,10 +24,9 @@ export const register = async (req, res, next) => {
         res.status(201).json({ message: "Usuario registrado con éxito" });
     }
     catch (error) {
-        next(error); // Activa tu errorHandler.ts
+        next(error);
     }
 };
-// --- LOGIN ---
 export const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
@@ -49,10 +46,9 @@ export const login = async (req, res, next) => {
         });
     }
     catch (error) {
-        next(error); // <--- ESTO activa tu errorHandler.ts
+        next(error);
     }
 };
-// --- GET ME ---
 export const getMe = async (req, res) => {
     try {
         const authHeader = req.headers.authorization;
